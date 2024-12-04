@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h5 style="color: #999;">差值表达式</h5>
+      <div>{{msg}}</div>
+      <div>{{count}}</div>
+      <h5 style="color: #999;">v-text</h5>
+      <div v-text="msg"></div>
+      <div v-text="count"></div>
+      <h5 style="color: #999;">v-model</h5>
+      <input type="text" v-model="msg" />
+      <input type="text" v-model="count" />
+    </div>
+  </body>
+  <script src="./miniVue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        msg: "hello",
+        count: 1,
+        person: {
+          name: "张三",
+          age: 18,
+        },
+      },
+    });
+
+    console.log(vm.msg);
+    vm.msg = "world";
+  </script>
+</html>

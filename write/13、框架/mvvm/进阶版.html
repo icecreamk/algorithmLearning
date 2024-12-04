@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{name}}</p>
+      <p>{{age}}</p>
+    </div>
+  </body>
+  <script src="./进阶版.js"></script>
+
+  <script>
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+        const opt = {
+          el: "#app",
+          data: {
+            name: "111",
+            age: 18,
+          },
+        };
+
+        const vm = new Vue(opt);
+
+        setTimeout(() => {
+          opt.data.name = "222";
+          opt.data.age = "20";
+        }, 1000);
+      },
+      false
+    );
+
+  </script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+  }
+</style>
+<body>
+  <div class="box">
+
+  </div>
+  <ul>
+    <li>
+      <a href="#red">red</a>
+    </li>
+    <li>
+      <a href="#green">green</a>
+    </li>
+    <li>
+      <a href="#blue">blue</a>
+    </li>
+  </ul>
+</body>
+<script src="./hash.js"></script>
+<script>
+  // 简单实现：封装成class看hash.js文件
+  // const box = document.getElementsByClassName('box')[0]
+  // window.onhashchange = function () {
+  //   const hash = location.hash
+  //   const color = hash.slice(1)
+  //   console.log(color)  
+  //   box.style.backgroundColor = color
+  // }
+</script>
+
+</html>

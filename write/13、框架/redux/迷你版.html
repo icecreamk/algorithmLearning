@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+</body>
+<script src="./迷你版.js"></script>
+<script>
+
+  // 测试例子
+  const initialState = {
+    count: 0,
+  };
+
+  const counterReducer = (state, action) => {
+    switch (action.type) {
+      case 'INCREMENT':
+        return { ...state, count: state.count + 1 };
+      case 'DECREMENT':
+        return { ...state, count: state.count - 1 };
+      default:
+        return state;
+    }
+  };
+
+
+  const increment = () => ({
+    type: 'INCREMENT',
+  });
+
+  const decrement = () => ({
+    type: 'DECREMENT',
+  });
+
+  const actionCreators = {
+    increment,
+    decrement,
+  };
+
+  const loggerMiddleware = (store) => (next) => (action) => {
+    console.log('Dispatching:', action);
+    const result = next(action);
+    console.log('Next state:', store.getState());
+    return result;
+  };
+
+
+
+  const store = createStore(
+    counterReducer,
+    initialState,
+    applyMiddleWare(loggerMiddleware)
+  );
+
+  const boundActionCreators = bindActionCreators(actionCreators, store.dispatch);
+
+  store.subscribe(() => {
+    console.log('Current State:', store.getState());
+  });
+
+  boundActionCreators.increment(); // 输出: Dispatching: { type: 'INCREMENT' }, Next state: { count: 1 }, Current State: { count: 1 }
+  boundActionCreators.increment(); // 输出: Dispatching: { type: 'INCREMENT' }, Next state: { count: 2 }, Current State: { count: 2 }
+  boundActionCreators.decrement(); // 输出: Dispatching: { type: 'DECREMENT' }, Next state: { count: 1 }, Current State: { count: 1 }
+</script>
+
+</html>
