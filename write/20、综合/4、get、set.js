@@ -5,9 +5,15 @@ function formatKeys(path) {
 }
 
 function getValue(target, path) {
-  const key = formatKeys(path);
-  const keys = key.split(".").filter((_) => _ !== "");
 
+  // a[3].b -> a.3.b
+  // TODO
+  const keys = path.replace(/\[(\d+)\]/g, '.$1').split('.').filter((_) => _ !== "");
+
+  // const key = formatKeys(path);
+  // const keys = key.split(".").filter((_) => _ !== "");
+
+  console.log(keys, formatKeys(path));
   let i = 0;
   let result = target;
   for (; i < keys.length; i++) {
