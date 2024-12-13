@@ -7,7 +7,6 @@ function formatKeys(path) {
 function getValue(target, path) {
 
   // a[3].b -> a.3.b
-  // TODO
   const keys = path.replace(/\[(\d+)\]/g, '.$1').split('.').filter((_) => _ !== "");
 
   // const key = formatKeys(path);

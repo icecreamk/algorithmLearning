@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!-- <div id="root">000<p>111</p><span>222</span><ul><li>1</li><li>2</li><li>3</li></ul></div> -->
+    <div id="root">000<p>111</p><span>222</span><ul><li>1</li><li>2</li><li>3</li></ul></div>
+  </body>
+  <script>
+    const root = document.getElementById("root");
+    const tree = [];
+    function dom2Json(node) {
+      const data = {
+        tag: node.tagName || "text",
+        children: [],
+      };
+      if (!node.tagName) {
+        data.content = node.textContent
+      }
+      if (node.childNodes) {
+        data.children = []
+      }
+      (node.childNodes || []).forEach((node) => {
+        data.children.push(dom2Json(node));
+      });
+      return data;
+    }
+
+    console.log(dom2Json(root));
+  </script>
+</html>
