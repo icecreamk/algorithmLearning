@@ -1,23 +1,42 @@
-
-
-var obj = {
-  a: 1,
-  b: 9,
-  c: 4,
+var a = {
+  a_y: {
+    a_z: {
+      y_x: 6,
+    },
+    b_c: 1,
+  },
 };
 
-Object.entries(obj) // [['a', 1], ['b', 9], ['c', 4]]
-Object.fromEntries(Object.entries(obj)) // {a: 1, b: 9, c: 4}
+// {
+//   ay: {
+//     az: {
+//       yx: 6,
+//     },
+//     bc: 1,
+//   },
+// };
+
+const regularExpress = (obj) => {
+  try {
+    const str = JSON.stringify(obj).replace(/_/g, "");
+    return JSON.parse(str);
+  } catch (error) {
+    return obj;
+  }
+};
 
 
-function foo(obj) {
-  return Object.fromEntries(
-    Object.entries(obj).filter(([key, value]) => {
-      return value > 2;
-    })
-  );
-}
+const recursion = (obj) => {
+  const keys = Object.keys(obj);
+  keys.forEach((key) => {
+    const newKey = key.replace(/_/g, "");
+    obj[newKey] = recursion(obj[key]);
+    delete obj[key];
+  });
 
+  return obj;
+};
 
+// console.log(regularExpress(a));
+console.log(recursion(a));
 
-console.log(obj, foo(obj));
