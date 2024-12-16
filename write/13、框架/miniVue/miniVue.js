@@ -113,6 +113,7 @@ class Compile {
     });
   }
   update(node, key, attrName) {
+    // 调用textUpdater、modelUpdater
     let updateFn = this[attrName + "Updater"];
     updateFn && updateFn.call(this, node, this.vm[key], key);
   }
