@@ -14,12 +14,13 @@
 // 综合： 时间复杂度是 O(n log n)。
 function canBeRepeated(s) {
   if (s.length <= 1) return false;
-
+  console.log(s.length / 2)
   for (let i = 1; i <= s.length / 2; i++) {
     if (s.length % i === 0) {
       const substring = s.slice(0, i);
       let repeatedString = '';
       const repeatCount = s.length / i;
+      console.log(i, substring, repeatCount)
 
       for (let j = 0; j < repeatCount; j++) {
         repeatedString += substring;

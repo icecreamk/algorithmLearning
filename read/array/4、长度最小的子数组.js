@@ -58,4 +58,4 @@ var minSubArrayLen = function(target, nums) {
   return ans === Infinity ? 0 : ans
 };
 
-console.log(minSubArrayLen(7, [2,3,1,2,4,3]))
+console.log(minSubArrayLen(7, [2,3,1,2,4,0,3]))

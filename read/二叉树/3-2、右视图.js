@@ -5,7 +5,6 @@
 //   1
 //  2  3
 //   5   4
-
 var rightSideView = function (root) {
   //二叉树右视图 只需要把每一层最后一个节点存储到res数组
   let res = [],
@@ -16,8 +15,11 @@ var rightSideView = function (root) {
     // 记录当前层级节点个数
     let length = queue.length;
     while (length--) {
+      // length 是外层的
+      console.log([...queue]);
       let node = queue.shift();
       // length长度为0的时候表明到了层级最后一个节点
+      console.log(length)
       if (!length) {
         res.push(node.val);
       }
@@ -28,3 +30,21 @@ var rightSideView = function (root) {
 
   return res;
 };
+
+const root = {
+  val: 1,
+  left: {
+    val: 2,
+    right: {
+      val: 5,
+    },
+  },
+  right: {
+    val: 3,
+    right: {
+      val: 4,
+    },
+  },
+};
+
+console.log(rightSideView(root));

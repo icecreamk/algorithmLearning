@@ -57,7 +57,6 @@ class Heap {
       console.log("continue", index, parent);
       console.log([...this.queue]);
     }
-
   }
 
   // 获取堆顶元素并移除
@@ -132,6 +131,31 @@ var topKFrequent = function (nums, k) {
 };
 
 console.log("end", topKFrequent([1, 1, 1, 1, 2, 2, 2, 3, 3, 4], 4));
+
+// 桶排序
+var topKFrequent1 = function (nums, k) {
+  const map = new Map();
+  for (const n of nums) map.set(n, 1 + (map.get(n) || 0));
+
+  const buckets = new Array(nums.length + 1);
+
+  // 这里对桶进行排序
+  for (const [n, v] of map)
+    !buckets[v] ? (buckets[v] = [n]) : buckets[v].push(n);
+  console.log(buckets, map);
+
+  const res = [];
+
+  // 这时候桶是以次数排序，越后面的越大，所以从后往前遍历
+  for (let i = buckets.length - 1; i > -1; i--) {
+    if (res.length >= k) break;
+    if (buckets[i]) res.push(...buckets[i]);
+  }
+
+  return res.length > k ? res.slice(0, k) : res;
+};
+
+console.log("end1", topKFrequent1([7, 3, 3, 3, 1, 1, 2], 3));
 
 
 // 1
