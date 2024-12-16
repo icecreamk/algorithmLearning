@@ -47,7 +47,7 @@ function flatten(arr) {
   if (!arr.length) return;
   while (arr.some(Array.isArray)) {
     // 利用扩展符不断展开
-    arr = [].concat(...arr);
+    arr = [].concat(...arr); // 不断的展开
   }
   return arr;
 }

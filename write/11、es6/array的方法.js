@@ -9,7 +9,10 @@ Array.myIsArray([]) // true
 
 // es6
 Array.myArrayOf = function (...args) {
+  console.log(args)
   // return Array.prototype.slice.call(args);
+  // return [].slice.apply(args, [0, args.length]);
+  // return [].slice.call(args, 0, args.length);
   return [].slice.call(args);
 };
 

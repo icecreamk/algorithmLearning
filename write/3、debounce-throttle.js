@@ -3,6 +3,7 @@
 // 清除之前的定时器：在每次触发事件时清除之前的定时器。
 // 重新设置定时器：在每次触发事件时重新设置定时器。
 // 执行函数：在定时器结束后执行目标函数。
+// 防抖
 function debounce(func, wait) {
   let timeout;
 
@@ -35,6 +36,7 @@ for (let i = 0; i < 10; i++) {
 
 // <---------------------><--------------------->throttle<---------------------><--------------------->
 
+// 节流
 function throttle(func, wait) {
   let timeout = null;
   let lastExecuted = 0;
