@@ -4,6 +4,25 @@
 
 // 先使用递归的方式，来做前序遍历。要知道递归和回溯就是一家的，本题也需要回溯
 
+
+function binaryTreePathsArray(root) {
+  const res = [];
+  function dfs(node, curPath) {
+    if (!node.left && !node.right) {
+      curPath.push(node.val);
+      res.push(curPath);
+      return;
+    }
+    curPath.push(node.val);
+    // 注意这里path是数组，是引用类型，不能直接传入，需要传新的数组
+    node.left && dfs(node.left, [...curPath]);
+    node.right && dfs(node.right, [...curPath]);
+  }
+
+  dfs(root, []);
+  return res;
+}
+
 // 递归法：
 var binaryTreePaths = function (root) {
   //递归遍历+递归三部曲

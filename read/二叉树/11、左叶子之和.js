@@ -22,8 +22,8 @@ var sumOfLeftLeaves = function (root) {
     if (node === null) {
       return 0;
     }
-    let leftValue = nodesSum(node.left);
-    let rightValue = nodesSum(node.right);
+    let leftValue = node.left ? nodesSum(node.left) : 0;
+    let rightValue = node.right ? nodesSum(node.right) : 0;
     // 3. 单层递归逻辑
     let midValue = 0;
     if (node.left && node.left.left === null && node.left.right === null) {
