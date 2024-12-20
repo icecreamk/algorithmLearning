@@ -61,7 +61,7 @@ class Watcher {
     this.cb = cb;
     // 把watcher对象记录到静态属性target
     Dep.target = this;
-    // 调用get方法，在get方法中调用addSub
+    // 这里读取vm[key] 调用get方法，在get方法中调用addSub
     this.oldValue = vm[key];
     Dep.target = null;
   }
@@ -152,7 +152,6 @@ class Compile {
     if (reg.test(value)) {
       let key = RegExp.$1.trim();
       node.textContent = node.textContent.replace(reg, this.vm[key]);
-
       //  创建watcher对象，当数据改变更新视图
       new Watcher(this.vm, key, (newValue) => {
         node.textContent = newValue;
