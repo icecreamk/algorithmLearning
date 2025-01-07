@@ -1,59 +1,70 @@
-var partition = function (s) {
-  const res = [];
-  const dp = new Array(s.length);
-  for (let i = 0; i < dp.length; i++) {
-    dp[i] = new Array(s.length);
+//                                      abcd
+//             a|bcd                    ab|cd         abc|d   abcd
+//        /       \     
+//     a|b|cd     a|b|cd|  a|bc|d| a|bcd|       ab|c|d| ab|cd|  abc|d|   abcd|
+//   a|b|cd|
+// a|b|c|d|
+
+//             aab
+//      a|ab   aa|b    aab
+//   a|a|b
+
+// 01 12 23 34 24 13 34 14 02 23 34 24 03 34 04
+
+function dfs(temp, start) {
+  if (start === s.length) {
+    return;
   }
+
+  for (let i = start; i < s.length; i++) {
+    const val = s.substring(start, i + 1);
+    temp.push(val);
+    dfs(temp, i + 1);
+    temp.pop();
+  }
+}
+
+dfs([], start);
+
+function partition(s) {
+  const dp = Array.from(Array(s.length), () => Array(s.length).fill(false));
+  const res = [];
+
   for (let j = 0; j < s.length; j++) {
     for (let i = 0; i <= j; i++) {
-      if (i == j) {
+      if (i === j) {
         dp[i][j] = true;
-      } else if (j - i == 1 && s[i] == s[j]) {
+      } else if (j - i < 2 && s[i] === s[j]) {
         dp[i][j] = true;
-      } else if (j - i > 1 && s[i] == s[j] && dp[i + 1][j - 1]) {
+      } else if (dp[i + 1][j - 1] && s[i] === s[j]) {
         dp[i][j] = true;
-      } else {
-        dp[i][j] = false;
       }
     }
   }
+
   function dfs(temp, start) {
-    if (start == s.length) {
+    if (start === s.length) {
       res.push(temp.slice());
       return;
     }
     for (let i = start; i < s.length; i++) {
+      const val = s.substring(start, i + 1);
+      temp.push(val);
+      console.log(
+        "pushpushpushpushpush",
+        start,
+        i + 1,
+        JSON.parse(JSON.stringify(temp))
+      );
+      dfs(temp, i + 1);
+      temp.pop();
       if (dp[start][i]) {
-        temp.push(s.substring(start, i + 1));
-        dfs(temp, i + 1);
-        temp.pop();
       }
     }
   }
+
   dfs([], 0);
   return res;
-};
-console.log(partition("aabaca"));
+}
 
-
-// TODO
-const countSubstrings = (s) => {
-  const strLen = s.length;
-  let numOfPalindromicStr = 0;
-  let dp = Array.from(Array(strLen), () => Array(strLen).fill(false));
-
-  for (let j = 0; j < strLen; j++) {
-    for (let i = 0; i <= j; i++) {
-      if (s[i] === s[j]) {
-        if (j - i < 2) {
-          dp[i][j] = true;
-        } else {
-          dp[i][j] = dp[i + 1][j - 1];
-        }
-        numOfPalindromicStr += dp[i][j] ? 1 : 0;
-      }
-    }
-  }
-
-  return numOfPalindromicStr;
-};
+console.log(partition("abcd"));
