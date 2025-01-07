@@ -18,9 +18,15 @@ var integerBreak = function (n) {
   dp[2] = 1;
 
   for (let i = 3; i <= n; i++) {
+    console.log("iiiiiii", i, [...dp]);
+    // 这里利用了数学推理：a*（n-a）中，在n/2处取到最大值，相同周长，正方形体积最大
     for (let j = 1; j <= i / 2; j++) {
+      // 递推公式：拆，拆两个，拆两个以上，三种取最大
       dp[i] = Math.max(dp[i], dp[i - j] * j, (i - j) * j);
+      console.log("j", j, [...dp]);
     }
   }
   return dp[n];
 };
+
+console.log(integerBreak(6));

@@ -13,6 +13,12 @@
 // +1+1+1+1-1 = 3
 // 一共有5种方法让最终目标和为3。
 
+// 既然为target，那么就一定有 left组合 - right组合 = target。
+// left + right = sum，而sum是固定的。right = sum - left
+// left - (sum - left) = target 推导出 left = (target + sum)/2 。
+// target是固定的，sum是固定的，left就可以求出来。
+// 此时问题就是在集合nums中找出和为left的组合
+
 const findTargetSumWays = (nums, target) => {
   const sum = nums.reduce((a, b) => a + b);
 

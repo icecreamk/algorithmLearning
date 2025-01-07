@@ -23,6 +23,7 @@ const lengthOfLIS = (nums) => {
   for (let i = 1; i < nums.length; i++) {
     for (let j = 0; j < i; j++) {
       if (nums[i] > nums[j]) {
+        // 位置i的最长升序子序列等于j从0到i-1各个位置的最长升序子序列 + 1 的最大值。
         dp[i] = Math.max(dp[i], dp[j] + 1);
       }
     }

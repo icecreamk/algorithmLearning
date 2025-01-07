@@ -13,6 +13,10 @@
 // 输出：2
 // 解释：最大的子集是 {"0", "1"} ，所以答案是 2 。
 
+
+// dp[i][j] 可以由前一个strs里的字符串推导出来，strs里的字符串有zeroNum个0，oneNum个1。
+// dp[i][j] 就可以是 dp[i - zeroNum][j - oneNum] + 1
+
 const findMaxForm = (strs, m, n) => {
   const dp = Array.from(Array(m + 1), () => Array(n + 1).fill(0));
   let numOfZeros, numOfOnes;

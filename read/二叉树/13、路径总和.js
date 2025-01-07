@@ -4,6 +4,10 @@
 // 0112.路径总和
 // 递归
 
+// 给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
+// 说明: 叶子节点是指没有子节点的节点。
+// 示例: 给定如下二叉树，以及目标和 sum = 22，
+// 返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5->4->11->2。
 /**
  * @param {treenode} root
  * @param {number} targetsum
@@ -13,6 +17,7 @@ let haspathsum1 = function (root, targetsum) {
   // 递归法
   const traversal = (node, cnt) => {
     // 遇到叶子节点，并且计数为0
+    console.log(cnt)
     if (cnt === 0 && !node.left && !node.right) return true;
     // 遇到叶子节点而没有找到合适的边(计数不为0)，直接返回
     if (!node.left && !node.right) return false;
@@ -31,7 +36,7 @@ let haspathsum1 = function (root, targetsum) {
   // if (!root.left && !root.right && targetsum === root.val) return true;
   // return haspathsum(root.left, targetsum - root.val) || haspathsum(root.right, targetsum - root.val);
 };
-// 迭代
+// 迭代（先序）
 let hasPathSum2 = function (root, targetSum) {
   if (root === null) return false;
   let nodeArr = [root];
@@ -63,6 +68,11 @@ let hasPathSum2 = function (root, targetSum) {
 };
 // 0113.路径总和-ii
 // 递归
+
+// 给你二叉树的根节点 root 和一个整数目标和 targetSum ，找出所有 从根节点到叶子节点 路径总和等于给定目标和的路径。
+// 叶子节点 是指没有子节点的节点。
+// 输入：root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
+// 输出：[[5,4,11,2],[5,8,4,5]]
 
 let pathsum3 = function (root, targetsum) {
   // 递归法
