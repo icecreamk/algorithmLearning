@@ -28,3 +28,5 @@ var lastStoneWeightII = function (stones) {
 
   return sum - dp[dpLen] - dp[dpLen];
 };
+
+console.log(lastStoneWeightII([2, 7, 4, 1, 8, 1]));
