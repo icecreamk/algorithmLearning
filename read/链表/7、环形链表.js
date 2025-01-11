@@ -53,7 +53,9 @@ var detectCycle2 = function (head) {
   while (fast && fast.next) {
     slow = slow.next;
     fast = fast.next.next;
+    // 这里表示相遇了
     if (fast == slow) {
+      // 由于x = z，也就是进入环的距离等于未走完环的距离，相遇时，就是起始点
       slow = head;
       while (fast !== slow) {
         slow = slow.next;
