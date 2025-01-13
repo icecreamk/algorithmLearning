@@ -1,22 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body></body>
-  <script>
-    function ListNode(val, next) {
-      this.val = val === undefined ? 0 : val;
-      this.next = next === undefined ? null : next;
-    }
-    function TreeNode(val, left, right) {
-      this.val = val === undefined ? 0 : val;
-      this.left = left === undefined ? null : left;
-      this.right = right === undefined ? null : right;
-    }
-  </script>
-  <script src="./25.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body></body>
+<script>
+  function ListNode(val, next) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
+  }
+  function TreeNode(val, left, right) {
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
+  }
+</script>
+<script src="./25.js"></script>
+<script>
+  var solveNQueens = function (n) {
+    const colsMemo = new Set();  // 列集，记录出现过皇后的列
+    const diag1 = new Set(); // 正对角线集
+    const diag2 = new Set(); // 反对角线集
+
+    const ans = [];
+
+    const matrix = Array.from(new Array(n), () => new Array(n).fill('.'))
+    const backtrack = (row) => {
+      if (row === n) {
+        const stringsBoard = matrix.slice();
+        for (let i = 0; i < n; i++) {
+          stringsBoard[i] = stringsBoard[i].join("");
+        }
+        ans.push(stringsBoard);
+        return;
+      }
+      for (let j = 0; j < matrix.length; j++) {
+        // 当前位置会导致互相攻击 继续下一轮搜索
+        if (colsMemo.has(j) || diag2.has(row - j) || diag1.has(row + j)) {
+          continue
+        }
+
+        matrix[row][j] = "Q";
+        colsMemo.add(j);          // 记录放了皇后的列
+        diag2.add(row - j);   // 记录放了皇后的正对角线
+        diag1.add(row + j);   // 记录放了皇后的负对角线
+
+        // 另起一行搜索 同一行只能有一个皇后
+        backtrack(row + 1);
+
+        matrix[row][j] = ".";
+        colsMemo.delete(j);          // 记录放了皇后的列
+        diag2.delete(row - j);   // 记录放了皇后的正对角线
+        diag1.delete(row + j);   // 记录放了皇后的负对角线
+
+      }
+    };
+    backtrack(0);
+    return ans;
+  };
+
+  console.log(solveNQueens(4))
+</script>
+
 </html>
