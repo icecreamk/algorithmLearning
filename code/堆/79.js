@@ -19,7 +19,7 @@ function swap(arr, i, j) {
 function heapify(arr, x, length) {
   var l = 2 * x + 1;
   var r = 2 * x + 2;
-  console.log("x", x, l, r);
+  // console.log("x", x, l, r);
   var largest = x;
 
   // 如果子节点 大于 当前的，则交换，直到属于换到属于自己的位置
@@ -31,7 +31,6 @@ function heapify(arr, x, length) {
   }
   if (largest != x) {
     swap(arr, x, largest);
-    console.log("333", JSON.parse(JSON.stringify(arr)));
     // 递归交换以下的是否也建好堆.
     heapify(arr, largest, length);
   }
@@ -39,10 +38,8 @@ function heapify(arr, x, length) {
 
 var findKthLargest = function (nums, k) {
   var size = nums.length;
-  console.log("1", JSON.parse(JSON.stringify(nums)));
   // 建立堆
   for (var i = parseInt(size / 2) + 1; i >= 0; i--) {
-    console.log("idx", i);
     heapify(nums, i, size);
   }
   // 排序
@@ -54,4 +51,4 @@ var findKthLargest = function (nums, k) {
   return nums[size - k];
 };
 
-console.log(findKthLargest([3, 10, 1, 5, 9, 4], 2));
+// console.log(findKthLargest([3, 10, 1, 5, 9, 4], 2));
