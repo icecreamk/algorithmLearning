@@ -19,7 +19,7 @@ var topKFrequent = function (nums, k) {
 
 var topKFrequent = function (nums, k) {
   let map = new Map(),
-    heap = [];
+    heap = [,];
   nums.map((num) => {
     if (map.has(num)) map.set(num, map.get(num) + 1);
     else map.set(num, 1);
@@ -32,7 +32,6 @@ var topKFrequent = function (nums, k) {
 
   // 如果元素数量大于 k，遍历map，构建小顶堆
   let i = 0;
-//   console.log(map);
   map.forEach((value, key) => {
     if (i < k) {
       // 取前k个建堆, 插入堆
@@ -45,16 +44,16 @@ var topKFrequent = function (nums, k) {
       // 自上而下式堆化第一个元素
       heapify(heap, map, k, 1);
     }
-    // console.log(JSON.parse(JSON.stringify(heap)));
+    console.log(JSON.parse(JSON.stringify(heap)));
     i++;
   });
   // 删除heap中第一个元素
-  //   heap.shift();
+  heap.shift();
   return heap;
 };
 
 // 原地建堆，从后往前，自上而下式建小顶堆
-let buildHeap = (heap, map, k) => {
+var buildHeap = (heap, map, k) => {
   if (k === 1) return;
   // 从最后一个非叶子节点开始，自上而下式堆化
   for (let i = Math.floor(k / 2); i >= 1; i--) {
@@ -89,5 +88,7 @@ let swap = (arr, i, j) => {
   arr[j] = temp;
 };
 
-console.log(topKFrequent([1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 2));
-console.log(topKFrequent([3,0,1,0], 1)); // [0]
+console.log(topKFrequent([1, 1, 1, 2, 2, 3, 3, 3, 3], 2));
+console.log(topKFrequent([3, 0, 1, 0], 1)); // [0]
+
+
