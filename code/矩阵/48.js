@@ -1,4 +1,9 @@
+
+
+
 // 旋转图像
+
+// 辅助数组
 var rotate = function (matrix) {
   const n = matrix.length;
   const matrix_new = new Array(n).fill(0).map(() => new Array(n).fill(0));
@@ -14,6 +19,10 @@ var rotate = function (matrix) {
   }
 };
 
+
+// 原地翻转
+// 顺90 水平，主对角
+// 逆90 垂直，主对角
 var rotate = function (matrix) {
   const n = matrix.length;
   //水平中轴线翻转
