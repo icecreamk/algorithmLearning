@@ -1,3 +1,5 @@
+// 每次都把最大或者最小的，冒泡到后面去
+
 function bubbleSort(arr) {
   let len = arr.length;
   for (let i = 0; i < len; i++) {
